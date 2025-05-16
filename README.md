@@ -8,7 +8,7 @@ A responsive countdown timer with:
 
 ## 🛠  Features
 
-- Visual alert
+- Audio and visual alerts
 - Works even when switching tabs
 
 ## 💻 Usage
@@ -22,7 +22,6 @@ A responsive countdown timer with:
 
 ## 📋 Todos
 - Build using webpack
-- Add audio beep when time expires
 - Add emoji and blinking effects in tab title
 - Remove alert on time up
 - Continues counting negative time
