@@ -18,10 +18,41 @@ A responsive countdown timer with:
    git clone git@github.com:dalepotter/minute-minder.git
    cd minute-minder
    ```
-2. Open index.html in a browser.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server (with live reload):
+   ```bash
+   npm start
+   ```
+   This will open the timer in your browser at http://localhost:8080.
+
+## 🚀 Deployment
+
+1. Build for production:
+   ```bash
+   npm run build
+   ```
+   This compiles and outputs static files to the dist/ directory, ready for deployment (e.g., GitHub Pages).
+
+## 📁 Project Structure
+
+```bash
+minute-minder/
+├── .gitignore
+├── dist/               # Compiled static files
+├── src/
+│   ├── index.js        # Main JavaScript logic
+│   └── style.css       # UI styling
+├── public/
+│   └── index.html      # HTML template
+├── webpack.config.js   # Webpack configuration
+└── package.json        # Project metadata and scripts
+```
+
 
 ## 📋 Todos
-- Build using webpack
 - Add emoji and blinking effects in tab title
 - Remove alert on time up
 - Continues counting negative time

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Timer</title>
+</head>
+
+<body>
+
+  <h1>Countdown Timer</h1>
+
+  <div id="timer">00:00</div>
+
+  <div class="preset-buttons">
+    <button onclick="setTimer(20)">20 min</button>
+    <button onclick="setTimer(3)">3 min</button>
+    <button onclick="setTimer(1)">1 min</button>
+  </div>
+
+  <div>
+    <input type="number" id="customMinutes" placeholder="Minutes" min="1" />
+    <button onclick="setCustomTime()">Set Custom Time</button>
+  </div>
+
+  <div class="control-buttons">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()" class="reset-button">Reset</button>
+  </div>
+
+</body>
+
+</html>
