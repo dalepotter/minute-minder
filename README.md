@@ -40,6 +40,9 @@ A responsive countdown timer with:
 
 ```bash
 minute-minder/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml  # GitHub Actions workflow to auto-deploy to GitHub Pages
 ├── .gitignore
 ├── dist/               # Compiled static files
 ├── src/
