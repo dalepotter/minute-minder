@@ -1,5 +1,8 @@
 # Minute Minder: A Browser-based Countdown Timer
 
+[![Deploy to GitHub Pages](https://github.com/dalepotter/minute-minder/actions/workflows/deploy.yml/badge.svg)](https://github.com/dalepotter/minute-minder/actions/workflows/deploy.yml)
+[🚀 Live Demo](https://dalepotter.github.io/minute-minder/)
+
 A distraction-free timer for work sprints and breaks. Alerts with sound, and works in the background.
 
 A responsive countdown timer with:
