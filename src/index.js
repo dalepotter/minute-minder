@@ -68,4 +68,10 @@ function playBeep() {
   oscillator.stop(ctx.currentTime + 1); // Beep for 1 second
 }
 
+window.setTimer = setTimer;
+window.setCustomTime = setCustomTime;
+window.startTimer = startTimer;
+window.pauseTimer = pauseTimer;
+window.resetTimer = resetTimer;
+
 updateDisplay(); // Initialize display
