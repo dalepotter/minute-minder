@@ -8,6 +8,7 @@ A distraction-free timer for work sprints and breaks. Alerts with sound, and wor
 A responsive countdown timer with:
 - Preset buttons (20, 3, 1 min)
 - Custom time input
+- Time remaining within tab title
 
 ## 🛠  Features
 

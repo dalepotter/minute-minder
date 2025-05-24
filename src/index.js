@@ -3,16 +3,20 @@ import './style.css';
 let timerDisplay = document.getElementById('timer');
 let totalSeconds = 0;
 let interval = null;
+const originalTitle = document.title;
 
 function updateDisplay() {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  timerDisplay.textContent =
-    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  timerDisplay.textContent = formattedTime;
+  document.title = formattedTime; // Update page title
+  history.replaceState(null, '', window.location.pathname); // Reset history entry to prevent clutter
 }
 
 function setTimer(minutes) {
   clearInterval(interval);
+  interval = null;
   totalSeconds = minutes * 60;
   updateDisplay();
 }
@@ -31,6 +35,7 @@ function startTimer() {
       clearInterval(interval);
       interval = null;
       updateDisplay();
+      restoreTitle();
       playBeep();
       alert("Time's up!");
     } else {
@@ -43,6 +48,7 @@ function startTimer() {
 function pauseTimer() {
   clearInterval(interval);
   interval = null;
+  restoreTitle();
 }
 
 function resetTimer() {
@@ -50,6 +56,11 @@ function resetTimer() {
   interval = null;
   totalSeconds = 0;
   updateDisplay();
+  restoreTitle();
+}
+
+function restoreTitle() {
+  document.title = originalTitle;
 }
 
 function playBeep() {
