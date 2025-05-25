@@ -4,6 +4,7 @@ let timerDisplay = document.getElementById('timer');
 let totalSeconds = 0;
 let interval = null;
 const originalTitle = document.title;
+let audioCtx = null;
 
 function updateDisplay() {
   const minutes = Math.floor(totalSeconds / 60);
@@ -30,6 +31,15 @@ function setCustomTime() {
 
 function startTimer() {
   if (totalSeconds <= 0 || interval) return;
+
+  // Unlock AudioContext if not already
+  if (!audioCtx) {
+    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+    const dummy = audioCtx.createBufferSource();
+    dummy.connect(audioCtx.destination);
+    dummy.start(0);
+  }
+
   interval = setInterval(() => {
     if (totalSeconds <= 0) {
       clearInterval(interval);
@@ -37,7 +47,6 @@ function startTimer() {
       updateDisplay();
       restoreTitle();
       playBeep();
-      alert("Time's up!");
     } else {
       totalSeconds--;
       updateDisplay();
@@ -64,19 +73,20 @@ function restoreTitle() {
 }
 
 function playBeep() {
-  const ctx = new(window.AudioContext || window.webkitAudioContext)();
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
+  if (!audioCtx) return;
+
+  const oscillator = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
 
   oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(880, ctx.currentTime); // High pitch
-  gainNode.gain.setValueAtTime(0.1, ctx.currentTime); // Low volume
+  oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // High pitch
+  gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); // Low volume
 
   oscillator.connect(gainNode);
-  gainNode.connect(ctx.destination);
+  gainNode.connect(audioCtx.destination);
 
   oscillator.start();
-  oscillator.stop(ctx.currentTime + 1); // Beep for 1 second
+  oscillator.stop(audioCtx.currentTime + 1); // Beep for 1 second
 }
 
 window.setTimer = setTimer;

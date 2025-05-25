@@ -61,7 +61,6 @@ minute-minder/
 
 ## 📋 Todos
 - Add emoji and blinking effects in tab title
-- Remove alert on time up
 - Continues counting negative time
 - Add blinking time
 - Auto-start on selection
