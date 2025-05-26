@@ -5,13 +5,16 @@ let totalSeconds = 0;
 let interval = null;
 const originalTitle = document.title;
 let audioCtx = null;
+let beepPlayed = false;
 
 function updateDisplay() {
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  const absSeconds = Math.abs(totalSeconds);
+  const minutes = Math.floor(absSeconds / 60);
+  const seconds = absSeconds % 60;
+  const prefix = totalSeconds < 0 ? "-" : "";
+  const formattedTime = `${prefix}${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   timerDisplay.textContent = formattedTime;
-  document.title = formattedTime; // Update page title
+  document.title = formattedTime;
   history.replaceState(null, '', window.location.pathname); // Reset history entry to prevent clutter
 }
 
@@ -19,6 +22,7 @@ function setTimer(minutes) {
   clearInterval(interval);
   interval = null;
   totalSeconds = minutes * 60;
+  beepPlayed = false;
   updateDisplay();
 }
 
@@ -30,7 +34,7 @@ function setCustomTime() {
 }
 
 function startTimer() {
-  if (totalSeconds <= 0 || interval) return;
+  if (interval) return;
 
   // Unlock AudioContext if not already
   if (!audioCtx) {
@@ -41,16 +45,15 @@ function startTimer() {
   }
 
   interval = setInterval(() => {
-    if (totalSeconds <= 0) {
-      clearInterval(interval);
-      interval = null;
-      updateDisplay();
-      restoreTitle();
+    totalSeconds--;
+
+    // Play beep once when hitting exactly zero
+    if (totalSeconds === 0 && !beepPlayed) {
       playBeep();
-    } else {
-      totalSeconds--;
-      updateDisplay();
+      beepPlayed = true;
     }
+
+    updateDisplay();
   }, 1000);
 }
 
@@ -64,6 +67,7 @@ function resetTimer() {
   clearInterval(interval);
   interval = null;
   totalSeconds = 0;
+  beepPlayed = false;
   updateDisplay();
   restoreTitle();
 }

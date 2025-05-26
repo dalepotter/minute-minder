@@ -13,6 +13,7 @@ A responsive countdown timer with:
 ## 🛠  Features
 
 - Audio and visual alerts
+- Continues counting negative time
 - Works even when switching tabs
 
 ## 💻 Usage
@@ -61,7 +62,6 @@ minute-minder/
 
 ## 📋 Todos
 - Add emoji and blinking effects in tab title
-- Continues counting negative time
 - Add blinking time
 - Auto-start on selection
 - Multiple presses of the button increase the timer - e.g. 2 clicks of 20 minutes = 40 minutes, 3 presses of 1 minute = 3 minutes
