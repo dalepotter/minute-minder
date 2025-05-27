@@ -14,7 +14,10 @@ function updateDisplay() {
   const prefix = totalSeconds < 0 ? "-" : "";
   const formattedTime = `${prefix}${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   timerDisplay.textContent = formattedTime;
-  document.title = formattedTime;
+
+  // Set tab title
+  const emoji = totalSeconds < 0 ? "🔴" : "🟢";
+  document.title = `${emoji} ${formattedTime}`;
   history.replaceState(null, '', window.location.pathname); // Reset history entry to prevent clutter
 }
 
