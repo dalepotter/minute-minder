@@ -2,7 +2,15 @@ body {
   font-family: sans-serif;
   text-align: center;
   padding: 2em;
+  transition: background-color 0.3s ease;
+}
+
+.time-positive {
   background-color: #f4f4f4;
+}
+
+.time-negative {
+  background-color: #ffe5e5;
 }
 
 #timer {

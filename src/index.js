@@ -6,6 +6,7 @@ let interval = null;
 const originalTitle = document.title;
 let audioCtx = null;
 let beepPlayed = false;
+const body = document.body;
 
 function updateDisplay() {
   const absSeconds = Math.abs(totalSeconds);
@@ -19,6 +20,10 @@ function updateDisplay() {
   const emoji = totalSeconds < 0 ? "🔴" : "🟢";
   document.title = `${emoji} ${formattedTime}`;
   history.replaceState(null, '', window.location.pathname); // Reset history entry to prevent clutter
+
+  // Update background class
+  body.classList.toggle("time-negative", totalSeconds < 0);
+  body.classList.toggle("time-positive", totalSeconds >= 0);
 }
 
 function setTimer(minutes) {
