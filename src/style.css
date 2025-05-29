@@ -16,6 +16,18 @@ body {
 #timer {
   font-size: 4em;
   margin: 1em 0;
+  transition: color 0.3s ease;
+}
+
+.negative-time-text {
+  color: red;
+  animation: blink 1s step-start 0s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 button,

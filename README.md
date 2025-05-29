@@ -61,7 +61,6 @@ minute-minder/
 
 
 ## 📋 Todos
-- Add blinking time
 - Auto-start on selection
 - Multiple presses of the button increase the timer - e.g. 2 clicks of 20 minutes = 40 minutes, 3 presses of 1 minute = 3 minutes
 - Amend custom input to minutes and seconds

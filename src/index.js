@@ -1,6 +1,6 @@
 import './style.css';
 
-let timerDisplay = document.getElementById('timer');
+const timerDisplay = document.getElementById('timer');
 let totalSeconds = 0;
 let interval = null;
 const originalTitle = document.title;
@@ -24,6 +24,9 @@ function updateDisplay() {
   // Update background class
   body.classList.toggle("time-negative", totalSeconds < 0);
   body.classList.toggle("time-positive", totalSeconds >= 0);
+
+  // Update timer text colour and blink
+  timerDisplay.classList.toggle("negative-time-text", totalSeconds < 0);
 }
 
 function setTimer(minutes) {
