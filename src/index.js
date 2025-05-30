@@ -35,6 +35,7 @@ function setTimer(minutes) {
   totalSeconds = minutes * 60;
   beepPlayed = false;
   updateDisplay();
+  startTimer();
 }
 
 function setCustomTime() {
