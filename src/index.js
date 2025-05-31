@@ -1,6 +1,7 @@
 import './style.css';
 
 const timerDisplay = document.getElementById('timer');
+const pauseButton = document.getElementById('pauseButton');
 let totalSeconds = 0;
 let interval = null;
 const originalTitle = document.title;
@@ -34,6 +35,7 @@ function setTimer(minutes) {
   interval = null;
   totalSeconds = minutes * 60;
   beepPlayed = false;
+  pauseButton.textContent = "Pause";
   updateDisplay();
   startTimer();
 }
@@ -69,10 +71,16 @@ function startTimer() {
   }, 1000);
 }
 
-function pauseTimer() {
-  clearInterval(interval);
-  interval = null;
-  restoreTitle();
+function togglePause() {
+  if (interval) {
+    clearInterval(interval);
+    interval = null;
+    pauseButton.textContent = "Resume";
+    restoreTitle();
+  } else {
+    pauseButton.textContent = "Pause";
+    startTimer();
+  }
 }
 
 function resetTimer() {
@@ -80,6 +88,7 @@ function resetTimer() {
   interval = null;
   totalSeconds = 0;
   beepPlayed = false;
+  pauseButton.textContent = "Pause";
   updateDisplay();
   restoreTitle();
 }
@@ -107,8 +116,7 @@ function playBeep() {
 
 window.setTimer = setTimer;
 window.setCustomTime = setCustomTime;
-window.startTimer = startTimer;
-window.pauseTimer = pauseTimer;
+window.togglePause = togglePause;
 window.resetTimer = resetTimer;
 
 updateDisplay(); // Initialize display
