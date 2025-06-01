@@ -2,6 +2,7 @@ import './style.css';
 
 const timerDisplay = document.getElementById('timer');
 const pauseButton = document.getElementById('pauseButton');
+const resetButton = document.getElementById('resetButton');
 let totalSeconds = 0;
 let interval = null;
 const originalTitle = document.title;
@@ -28,6 +29,14 @@ function updateDisplay() {
 
   // Update timer text colour and blink
   timerDisplay.classList.toggle("negative-time-text", totalSeconds < 0);
+
+  updateControls();
+}
+
+function updateControls() {
+  const hasTime = totalSeconds !== 0 || interval !== null;
+  pauseButton.disabled = !hasTime;
+  resetButton.disabled = !hasTime;
 }
 
 function setTimer(minutes) {
@@ -69,6 +78,8 @@ function startTimer() {
 
     updateDisplay();
   }, 1000);
+
+  updateControls();
 }
 
 function togglePause() {
@@ -81,6 +92,8 @@ function togglePause() {
     pauseButton.textContent = "Pause";
     startTimer();
   }
+
+  updateControls();
 }
 
 function resetTimer() {

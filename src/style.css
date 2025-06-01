@@ -54,3 +54,9 @@ input[type="number"] {
 .reset-button {
   background-color: #dc3545;
 }
+
+button:disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+}
