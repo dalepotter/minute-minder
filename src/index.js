@@ -9,6 +9,8 @@ const originalTitle = document.title;
 let audioCtx = null;
 let beepPlayed = false;
 const body = document.body;
+let typingTimeout = null;
+let typedValue = '';
 
 function updateDisplay() {
   const absSeconds = Math.abs(totalSeconds);
@@ -126,6 +128,33 @@ function playBeep() {
   oscillator.start();
   oscillator.stop(audioCtx.currentTime + 1); // Beep for 1 second
 }
+
+// Capture digit keypresses as custom minute input
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT') return;
+
+  if (e.key >= '0' && e.key <= '9') {
+    typedValue += e.key;
+    document.getElementById('customMinutes').value = parseInt(typedValue, 10);
+
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+      if (typedValue) {
+        setCustomTime();
+        typedValue = '';
+      }
+    }, 3000); // 3 seconds
+  }
+
+  if (e.key === 'Enter') {
+    clearTimeout(typingTimeout);
+    if (typedValue) {
+      setCustomTime();
+      typedValue = '';
+    }
+  }
+});
+
 
 window.setTimer = setTimer;
 window.setCustomTime = setCustomTime;

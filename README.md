@@ -16,6 +16,7 @@ A responsive countdown timer with:
 - Auto-starts on selection
 - Continues counting negative time
 - Works even when switching tabs
+- Keyboard shortcut: Entering numbers populates the custom time input, which starts automatically if no further number entered within 3 seconds
 
 ## 💻 Usage
 
@@ -64,4 +65,3 @@ minute-minder/
 ## 📋 Todos
 - Multiple presses of the button increase the timer - e.g. 2 clicks of 20 minutes = 40 minutes, 3 presses of 1 minute = 3 minutes
 - Amend custom input to minutes and seconds
-- Add keyboard shortcuts: Entering numbers should populate the custom input, starting automatically if no key press in 5 seconds
