@@ -17,9 +17,12 @@
     <button onclick="setTimer(3)">3 min</button>
     <button onclick="setTimer(1)">1 min</button>
   </div>
-
-  <div>
-    <input type="number" id="customMinutes" placeholder="Minutes" min="1" />
+  <div style="position: relative; display: inline-block;">
+    <input type="number" id="customMinutes" placeholder="Custom minutes" min="1" />
+    <svg id="autoStartCircle" width="30" height="30" style="position: absolute; top: 5px; right: -40px; display: none;">
+      <circle cx="15" cy="15" r="13" stroke="#ccc" stroke-width="4" fill="none" />
+      <circle id="autoStartProgress" cx="15" cy="15" r="13" stroke="#28a745" stroke-width="4" fill="none" stroke-dasharray="81.68" stroke-dashoffset="81.68" transform="rotate(-90 15 15)" />
+    </svg>
     <button onclick="setCustomTime()">Set Custom Time</button>
   </div>
 

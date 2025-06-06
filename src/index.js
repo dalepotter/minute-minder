@@ -9,8 +9,15 @@ const originalTitle = document.title;
 let audioCtx = null;
 let beepPlayed = false;
 const body = document.body;
+
 let typingTimeout = null;
 let typedValue = '';
+let countdownInterval = null;
+let countdownStart = null;
+const countdownDuration = 3000; // 3 seconds
+const circle = document.getElementById('autoStartProgress');
+const circleSVG = document.getElementById('autoStartCircle');
+const circumference = 2 * Math.PI * 13; // 13 is the radius of the circle
 
 function updateDisplay() {
   const absSeconds = Math.abs(totalSeconds);
@@ -129,6 +136,34 @@ function playBeep() {
   oscillator.stop(audioCtx.currentTime + 1); // Beep for 1 second
 }
 
+function startCountdownCircle() {
+  countdownStart = Date.now();
+  circleSVG.style.display = 'block';
+  circle.style.strokeDashoffset = circumference;
+
+  clearInterval(countdownInterval);
+  countdownInterval = setInterval(() => {
+    const elapsed = Date.now() - countdownStart;
+    const progress = Math.min(elapsed / countdownDuration, 1);
+    circle.style.strokeDashoffset = circumference * (1 - progress);
+
+    if (progress >= 1) {
+      clearInterval(countdownInterval);
+      if (typedValue) {
+        setCustomTime();
+        typedValue = '';
+        hideCountdownCircle();
+      }
+    }
+  }, 100);
+}
+
+function hideCountdownCircle() {
+  clearInterval(countdownInterval);
+  circleSVG.style.display = 'none';
+  circle.style.strokeDashoffset = circumference;
+}
+
 // Capture digit keypresses as custom minute input
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT') return;
@@ -142,8 +177,11 @@ document.addEventListener('keydown', (e) => {
       if (typedValue) {
         setCustomTime();
         typedValue = '';
+        hideCountdownCircle();
       }
-    }, 3000); // 3 seconds
+    }, countdownDuration);
+
+    startCountdownCircle();
   }
 
   if (e.key === 'Enter') {
@@ -151,6 +189,7 @@ document.addEventListener('keydown', (e) => {
     if (typedValue) {
       setCustomTime();
       typedValue = '';
+      hideCountdownCircle();
     }
   }
 });

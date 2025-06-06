@@ -60,3 +60,7 @@ button:disabled {
   color: #666 !important;
   cursor: not-allowed;
 }
+
+#autoStartProgress {
+  transition: stroke-dashoffset 0.1s linear;
+}
