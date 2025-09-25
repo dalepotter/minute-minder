@@ -35,6 +35,13 @@ A responsive countdown timer with:
    ```
    This will open the timer in your browser at http://localhost:8080.
 
+## 🧪 Testing
+
+Run the test suite:
+```bash
+npm test
+```
+
 ## 🚀 Deployment
 
 1. Build for production:

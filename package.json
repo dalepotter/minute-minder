@@ -2,14 +2,20 @@
   "name": "minute-minder",
   "version": "1.0.0",
   "description": "A distraction-free timer for work sprints and breaks. Alerts with sound, and works in the background.",
+  "type": "module",
   "scripts": {
     "start": "webpack serve --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:run": "vitest run"
   },
   "devDependencies": {
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
+    "jsdom": "^27.0.0",
     "style-loader": "^3.3.3",
+    "vitest": "^3.2.4",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.2.2"
