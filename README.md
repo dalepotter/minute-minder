@@ -37,9 +37,18 @@ A responsive countdown timer with:
 
 ## 🧪 Testing
 
-Run the test suite:
+This project includes a comprehensive test suite built with [Vitest](https://vitest.dev/) and JSDOM for DOM testing.
+
+### Running Tests
 ```bash
+# Run tests once
 npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage (if configured)
+npm run test:run
 ```
 
 ## 🚀 Deployment
