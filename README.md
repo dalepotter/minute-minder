@@ -66,6 +66,7 @@ minute-minder/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml  # GitHub Actions workflow to auto-deploy to GitHub Pages
+│       └── test.yml    # GitHub Actions workflow to run tests
 ├── .gitignore
 ├── dist/               # Compiled static files
 ├── src/
@@ -73,7 +74,10 @@ minute-minder/
 │   └── style.css       # UI styling
 ├── public/
 │   └── index.html      # HTML template
+├── tests/
+│   └── timer.test.js   # Comprehensive test suite
 ├── webpack.config.js   # Webpack configuration
+├── vitest.config.js    # Vitest testing configuration
 └── package.json        # Project metadata and scripts
 ```
 
