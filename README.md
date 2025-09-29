@@ -65,21 +65,54 @@ npm run test:run
 minute-minder/
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml  # GitHub Actions workflow to auto-deploy to GitHub Pages
-│       └── test.yml    # GitHub Actions workflow to run tests
+│       ├── deploy.yml       # GitHub Actions workflow to auto-deploy to GitHub Pages
+│       └── test.yml         # GitHub Actions workflow to run tests
 ├── .gitignore
-├── dist/               # Compiled static files
+├── dist/                    # Compiled static files
 ├── src/
-│   ├── index.js        # Main JavaScript logic
-│   └── style.css       # UI styling
+│   ├── index.js             # Main entry point and app initialisation
+│   ├── style.css            # UI styling
+│   ├── modules/             # Core application modules
+│   │   ├── MinuteTimer.js   # Main orchestrator class
+│   │   ├── TimerState.js    # Timer state management and logic
+│   │   ├── UIController.js  # DOM manipulation and display updates
+│   │   ├── AudioManager.js  # Audio system and beep functionality
+│   │   └── KeyboardHandler.js # Global keyboard input processing
+│   └── utils/
+│       └── timeFormatter.js # Time formatting utilities
 ├── public/
-│   └── index.html      # HTML template
+│   └── index.html           # HTML template
 ├── tests/
-│   └── timer.test.js   # Comprehensive test suite
-├── webpack.config.js   # Webpack configuration
-├── vitest.config.js    # Vitest testing configuration
-└── package.json        # Project metadata and scripts
+│   ├── integration.test.js  # Integration tests for full app functionality
+│   ├── modules/             # Unit tests for each module
+│   │   ├── MinuteTimer.test.js
+│   │   ├── TimerState.test.js
+│   │   ├── UIController.test.js
+│   │   ├── AudioManager.test.js
+│   │   └── KeyboardHandler.test.js
+│   └── utils/
+│       └── timeFormatter.test.js
+├── webpack.config.js        # Webpack configuration
+├── vitest.config.js         # Vitest testing configuration
+└── package.json             # Project metadata and scripts
 ```
+
+
+## 🏗️ Architecture
+
+The application follows a modular architecture with clear separation of concerns:
+
+### Core Modules
+
+- **`MinuteTimer`** - Main orchestrator that coordinates all other modules and provides the public API
+- **`TimerState`** - Manages timer state (time remaining, running status) and business logic using event-driven architecture
+- **`UIController`** - Handles all DOM manipulation, display updates, and UI state management
+- **`AudioManager`** - Manages audio context initialisation and sound playback
+- **`KeyboardHandler`** - Processes global keyboard input with auto-start countdown functionality
+
+### Utilities
+
+- **`TimeFormatter`** - Pure functions for time formatting and emoji selection
 
 
 ## 📋 Todos
